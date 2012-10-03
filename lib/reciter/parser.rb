@@ -1,13 +1,17 @@
 module Reciter
   class Parser
     def parse(sequence)
-      validate(sequence)
+      validate_format(sequence)
       sequence.
       split(';').
       map {|subsequence|
-        subsequence.include?('-') ?
-          Range.new(*subsequence.split('-').map(&:to_i)).to_a :
+        if subsequence.include?('-')
+          r = Range.new(*subsequence.split('-').map(&:to_i))
+          raise InvalidInput unless r.begin <= r.end
+          r.to_a
+        else
           subsequence
+        end
       }.
       flatten.
       uniq.
@@ -43,7 +47,7 @@ module Reciter
 
     private
 
-    def validate(sequence)
+    def validate_format(sequence)
       subsequences = sequence.split(';')
       raise InvalidInput unless !subsequences.empty? &&
         subsequences.all? {|subsequence| subsequence =~ /^(\d+\-\d+)$|^\d+$/ }

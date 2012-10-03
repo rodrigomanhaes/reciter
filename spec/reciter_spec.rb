@@ -38,6 +38,7 @@ describe Reciter::Parser do
       expect { subject.parse('e-4') }.to raise_error Reciter::InvalidInput
       expect { subject.parse('2.') }.to raise_error Reciter::InvalidInput
       expect { subject.parse('1-3-5') }.to raise_error Reciter::InvalidInput
+      expect { subject.parse('9-7') }.to raise_error Reciter::InvalidInput
     end
   end
 
