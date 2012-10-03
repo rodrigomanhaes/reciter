@@ -16,7 +16,22 @@ module Reciter
     end
 
     def unparse(*sequence)
-      sequence.join(', ')
+      ranges = []
+      last = nil
+      sequence.sort.each do |n|
+        if last.nil? || n != last + 1
+          ranges << Range.new(n, n)
+        else
+          ranges[-1] = Range.new(ranges[-1].begin, n)
+        end
+        last = n
+      end
+      ranges.map {|r|
+        r.begin == r.end ?
+          r.begin :
+          "%s to %s" % [r.begin, r.end]
+      }.
+      join(', ')
     end
 
     private

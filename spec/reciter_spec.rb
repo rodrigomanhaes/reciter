@@ -45,5 +45,9 @@ describe Reciter::Parser do
     it 'sparse list' do
       subject.unparse(1, 3, 5, 7, 9).should == '1, 3, 5, 7, 9'
     end
+
+    it 'sequence' do
+      subject.unparse(1, 2, 3, 4, 5).should == '1 to 5'
+    end
   end
 end
