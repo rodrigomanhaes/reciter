@@ -17,5 +17,10 @@ describe Reciter::Parser do
       subject.parse('2-5').should == [2, 3, 4, 5]
       subject.parse('1-1000').should == (1..1000).to_a
     end
+
+    it 'parses both intervals and semicolon-separated numbers' do
+      subject.parse('1-3;4-5;8;10-12;15;18').should ==
+        [1, 2, 3, 4, 5, 8, 10, 11, 12, 15, 18]
+    end
   end
 end
