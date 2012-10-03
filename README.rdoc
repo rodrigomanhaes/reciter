@@ -13,12 +13,18 @@ following array:
 
 reciter also unparses an array to a human-readable sentence, when:
 
-    p.unparse([1, 2, 3, 5, 9, 10, 11])
+    p.unparse(1, 2, 3, 5, 9, 10, 11)
 
 
 returns:
 
     "1 to 3, 5, 9 to 11"
+
+
+An alternative text can be provided for replacing "to":
+
+    Reciter::Parser.config.text_for_to = 'a'
+    p.unparse(1, 2, 3)     # "1 a 3"
 
 
 == How to install

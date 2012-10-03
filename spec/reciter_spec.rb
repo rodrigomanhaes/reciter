@@ -58,5 +58,10 @@ describe Reciter::Parser do
       subject.unparse(1, 3, 4, 5, 7, 9, 10, 12, 18, 19, 20).should == \
         '1, 3 to 5, 7, 9, 10, 12, 18 to 20'
     end
+
+    it 'allows definition of alternative text for "to"' do
+      Reciter::Parser.config.text_for_to = 'a' # portuguese
+      subject.unparse(1, 2, 3).should == '1 a 3'
+    end
   end
 end

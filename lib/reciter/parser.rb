@@ -30,11 +30,15 @@ module Reciter
         if r.end == r.begin || r.end == r.begin + 1
           r.to_a
         else
-          "%s to %s" % [r.begin, r.end]
+          "%s %s %s" % [r.begin, config.text_for_to, r.end]
         end
       }.
       flatten.
       join(', ')
+    end
+
+    def self.config
+      @config ||= Reciter::Config.new
     end
 
     private
@@ -43,6 +47,10 @@ module Reciter
       subsequences = sequence.split(';')
       raise InvalidInput unless !subsequences.empty? &&
         subsequences.all? {|subsequence| subsequence =~ /^(\d+\-\d+)$|^\d+$/ }
+    end
+
+    def config
+      self.class.config
     end
   end
 end
