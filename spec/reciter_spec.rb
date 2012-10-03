@@ -12,5 +12,10 @@ describe Reciter::Parser do
       subject.parse('1;2;3').should == [1, 2, 3]
       subject.parse('9;987;1;6542').should == [1, 9, 987, 6542]
     end
+
+    it 'parses intervals' do
+      subject.parse('2-5').should == [2, 3, 4, 5]
+      subject.parse('1-1000').should == (1..1000).to_a
+    end
   end
 end

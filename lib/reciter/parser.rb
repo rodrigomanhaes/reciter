@@ -1,7 +1,16 @@
 module Reciter
   class Parser
     def parse(sequence)
-      sequence.split(';').map(&:to_i).sort
+      sequence.
+      split(';').
+      map {|subsequence|
+        subsequence.include?('-') ?
+          Range.new(*subsequence.split('-').map(&:to_i)).to_a :
+          subsequence
+      }.
+      flatten.
+      map(&:to_i).
+      sort
     end
   end
 end
