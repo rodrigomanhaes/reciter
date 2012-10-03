@@ -1,9 +1,35 @@
 = reciter
 
-Description goes here.
+Parses number sequences in the form:
+
+    p.parse('1-3;5;9-11')
+
+
+when "p" is an instance of Reciter::Parse, returning, for this case, the
+following array:
+
+    [1, 2, 3, 5, 9, 10, 11]
+
+
+reciter also unparses an array to a human-readable sentence, when:
+
+    p.unparse([1, 2, 3, 5, 9, 10, 11])
+
+
+returns:
+
+    "1 to 3, 5, 9 to 11"
+
+
+== How to install
+
+Just run:
+
+    gem install reciter
+
 
 == Contributing to reciter
- 
+
 * Check out the latest master to make sure the feature hasn't been implemented or the bug hasn't been fixed yet.
 * Check out the issue tracker to make sure someone already hasn't requested it and/or contributed it.
 * Fork the project.
@@ -16,4 +42,3 @@ Description goes here.
 
 Copyright (c) 2012 Rodrigo Manhães. See LICENSE.txt for
 further details.
-
