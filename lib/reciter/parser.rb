@@ -1,7 +1,7 @@
 module Reciter
   class Parser
     def parse(sequence)
-      [sequence.to_i]
+      sequence.split(';').map(&:to_i).sort
     end
   end
 end
