@@ -1,6 +1,7 @@
 = reciter
 
 {<img src="https://secure.travis-ci.org/rodrigomanhaes/reciter.png"/>}[http://travis-ci.org/rodrigomanhaes/reciter]
+{<img src="https://gemnasium.com/rodrigomanhaes/reciter.png"/>}[https://gemnasium.com/rodrigomanhaes/reciter]
 
 Parses number sequences in the form:
 
