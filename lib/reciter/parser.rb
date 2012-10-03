@@ -27,10 +27,13 @@ module Reciter
         last = n
       end
       ranges.map {|r|
-        r.begin == r.end ?
-          r.begin :
+        if r.end == r.begin || r.end == r.begin + 1
+          r.to_a
+        else
           "%s to %s" % [r.begin, r.end]
+        end
       }.
+      flatten.
       join(', ')
     end
 
