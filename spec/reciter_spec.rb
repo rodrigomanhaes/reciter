@@ -27,5 +27,17 @@ describe Reciter::Parser do
       subject.parse('1;1').should == [1]
       subject.parse('1-3;2-5').should == [1, 2, 3, 4, 5]
     end
+
+    it 'raises error for invalid input' do
+      expect { subject.parse('a') }.to raise_error Reciter::InvalidInput
+      expect { subject.parse('') }.to raise_error Reciter::InvalidInput
+      expect { subject.parse(';') }.to raise_error Reciter::InvalidInput
+      expect { subject.parse('-') }.to raise_error Reciter::InvalidInput
+      expect { subject.parse('1-a') }.to raise_error Reciter::InvalidInput
+      expect { subject.parse('2;a;4') }.to raise_error Reciter::InvalidInput
+      expect { subject.parse('e-4') }.to raise_error Reciter::InvalidInput
+      expect { subject.parse('2.') }.to raise_error Reciter::InvalidInput
+      expect { subject.parse('1-3-5') }.to raise_error Reciter::InvalidInput
+    end
   end
 end
