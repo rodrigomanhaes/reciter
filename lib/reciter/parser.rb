@@ -9,6 +9,7 @@ module Reciter
           subsequence
       }.
       flatten.
+      uniq.
       map(&:to_i).
       sort
     end

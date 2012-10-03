@@ -22,5 +22,10 @@ describe Reciter::Parser do
       subject.parse('1-3;4-5;8;10-12;15;18').should ==
         [1, 2, 3, 4, 5, 8, 10, 11, 12, 15, 18]
     end
+
+    it 'discards repeated numbers' do
+      subject.parse('1;1').should == [1]
+      subject.parse('1-3;2-5').should == [1, 2, 3, 4, 5]
+    end
   end
 end
