@@ -1,7 +1,7 @@
 require File.expand_path(File.dirname(__FILE__) + '/spec_helper')
 
 describe Reciter::Parser do
-  describe 'to list' do
+  describe 'parsing' do
     it 'parses single numbers' do
       subject.parse('1').should == [1]
       subject.parse('50').should == [50]
@@ -38,6 +38,12 @@ describe Reciter::Parser do
       expect { subject.parse('e-4') }.to raise_error Reciter::InvalidInput
       expect { subject.parse('2.') }.to raise_error Reciter::InvalidInput
       expect { subject.parse('1-3-5') }.to raise_error Reciter::InvalidInput
+    end
+  end
+
+  describe 'unparsing' do
+    it 'sparse list' do
+      subject.unparse(1, 3, 5, 7, 9).should == '1, 3, 5, 7, 9'
     end
   end
 end

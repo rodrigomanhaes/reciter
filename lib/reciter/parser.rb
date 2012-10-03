@@ -15,6 +15,10 @@ module Reciter
       sort
     end
 
+    def unparse(*sequence)
+      sequence.join(', ')
+    end
+
     private
 
     def validate(sequence)
