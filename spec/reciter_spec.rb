@@ -30,7 +30,6 @@ describe Reciter::Parser do
 
     it 'raises error for invalid input' do
       expect { subject.parse('a') }.to raise_error Reciter::InvalidInput
-      expect { subject.parse('') }.to raise_error Reciter::InvalidInput
       expect { subject.parse(';') }.to raise_error Reciter::InvalidInput
       expect { subject.parse('-') }.to raise_error Reciter::InvalidInput
       expect { subject.parse('1-a') }.to raise_error Reciter::InvalidInput
@@ -39,6 +38,11 @@ describe Reciter::Parser do
       expect { subject.parse('2.') }.to raise_error Reciter::InvalidInput
       expect { subject.parse('1-3-5') }.to raise_error Reciter::InvalidInput
       expect { subject.parse('9-7') }.to raise_error Reciter::InvalidInput
+    end
+
+    it 'returns an empty array for blank inputs' do
+      subject.parse('').should be_empty
+      subject.parse(nil).should be_empty
     end
   end
 
