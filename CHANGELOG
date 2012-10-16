@@ -1,0 +1,10 @@
+Reciter
+=======
+
+
+2012-10-16 Rodrigo Manhães <rmanhaes@gmail.com>
+0.1.1
+
+- Bugfix
+  * parser returns an empty array for blank inputs instead of raising
+    Reciter::InvalidInput
