@@ -10,3 +10,5 @@ rdoc
 
 # gem
 *.gem
+
+.rbenv-version
