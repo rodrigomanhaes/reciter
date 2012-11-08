@@ -48,18 +48,23 @@ describe Reciter::Parser do
 
   describe 'unparsing' do
     it 'sparse list' do
+      subject.unparse(:mechanic, 1, 3, 5, 7, 9).should == '1;3;5;7;9'
       subject.unparse(1, 3, 5, 7, 9).should == '1, 3, 5, 7, 9'
     end
 
     it 'intervals' do
+      subject.unparse(:mechanic, 1, 2, 3, 4, 5).should == '1-5'
       subject.unparse(1, 2, 3, 4, 5).should == '1 to 5'
     end
 
     it 'handles two-numbers interval like sparse values' do
+      subject.unparse(:mechanic, 4, 5).should == '4;5'
       subject.unparse(4, 5).should == '4, 5'
     end
 
     it 'intervals and sparse' do
+      subject.unparse(:mechanic, 1, 3, 4, 5, 7, 9, 10, 12, 18, 19, 20).should == \
+        '1;3-5;7;9;10;12;18-20'
       subject.unparse(1, 3, 4, 5, 7, 9, 10, 12, 18, 19, 20).should == \
         '1, 3 to 5, 7, 9, 10, 12, 18 to 20'
     end

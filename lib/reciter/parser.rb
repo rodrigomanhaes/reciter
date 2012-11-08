@@ -21,6 +21,7 @@ module Reciter
     end
 
     def unparse(*sequence)
+      mechanic, sequence = handle_unparse_params(sequence)
       ranges = []
       last = nil
       sequence.sort.each do |n|
@@ -35,11 +36,11 @@ module Reciter
         if r.end == r.begin || r.end == r.begin + 1
           r.to_a
         else
-          "%s %s %s" % [r.begin, config.text_for_to, r.end]
+          "%s%s%s" % [r.begin, mechanic ? '-' : " #{config.text_for_to} ", r.end]
         end
       }.
       flatten.
-      join(', ')
+      join(mechanic ? ';' : ', ')
     end
 
     def self.config
@@ -47,6 +48,14 @@ module Reciter
     end
 
     private
+
+    def handle_unparse_params(params)
+      if params[0].is_a? Symbol
+        [params[0] == :mechanic, params[1..-1]]
+      else
+        [false, params]
+      end
+    end
 
     def validate_format(sequence)
       subsequences = sequence.split(';')
