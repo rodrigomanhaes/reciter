@@ -73,5 +73,10 @@ describe Reciter::Parser do
       Reciter::Parser.config.text_for_to = 'a' # portuguese
       subject.unparse(1, 2, 3).should == '1 a 3'
     end
+
+    it 'allows array as argument' do
+      subject.unparse([1, 2, 3]).should == '1 a 3'
+      subject.unparse(:mechanic, [1, 2, 3]).should == '1-3'
+    end
   end
 end
