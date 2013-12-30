@@ -1,7 +1,7 @@
 module Reciter
   class Parser
     def parse(sequence)
-      return [] if sequence.nil? || sequence == ''
+      return [] if sequence.nil? || sequence.empty?
       validate_format(sequence)
       sequence.
       split(';').
