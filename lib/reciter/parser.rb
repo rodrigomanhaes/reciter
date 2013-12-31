@@ -11,12 +11,11 @@ module Reciter
           raise InvalidInput unless r.begin <= r.end
           r.to_a
         else
-          subsequence
+          subsequence.to_i
         end
       }.
       flatten.
       uniq.
-      map(&:to_i).
       sort
     end
 
